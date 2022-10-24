@@ -2,3 +2,5 @@ Pipfile.lock
 test.py
 _build
 .vscode
+dist
+jwt_helper.egg-info

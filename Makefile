@@ -7,14 +7,13 @@ help:
 	@echo "    - doc       Build the documentation"
 	@echo "    - package   Build jwt_helper as package"
 
-docdeps:
+deps:
 	pipenv install --dev
 
-doc: docdeps
+doc: deps
 	rm -fR ./build
 	pipenv run sphinx-build -M html doc _build
 
-package:
-	pipenv install
+package: deps
 	rm -fR dist/
 	pipenv run python -m build
