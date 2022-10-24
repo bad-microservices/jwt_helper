@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyjwt = "*"
+cryptography = "*"
+
+[dev-packages]
+sphinx-immaterial = "*"
+sphinx-autodoc-typehints = "*"
+sphinx-copybutton = "*"
+black = "*"
+build = "*"
+setuptools = "*"
+twine = "*"
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true

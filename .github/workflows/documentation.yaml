@@ -1,0 +1,26 @@
+name: Docs
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+      - name: Sphinx build
+        run: |
+          make doc
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        with:
+          publish_branch: master
+          external_repository: bad-microservices/bad-microservices.github.io
+          deploy_key: ${{ secrets.GH_PAGES }}
+          publish_dir: build/html
+          destination_dir: jwt_helper
+          force_orphan: true
