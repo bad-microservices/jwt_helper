@@ -1,8 +1,7 @@
 name: pypi
 on:
   release:
-    types:
-      - created
+    types: [published]
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -14,8 +13,8 @@ jobs:
       - name: Install pipenv
         run: |
           pip install pipenv
-      - name: Build dists
-        run: make build
+      - name: Build package
+        run: make package
       - name: Pypi Publish
         uses: pypa/gh-action-pypi-publish@master
         with:
