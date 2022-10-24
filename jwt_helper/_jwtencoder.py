@@ -15,7 +15,7 @@ class JWTEncoder:
     Attributes:
         issuer (str): The Issuer who created the JWT.
         signmethod (SignMethod): The Algorithm used to create the JWT.
-        secret (bytes | PRIVATE_KEY_TYPES | str): The secret used to create the JWT signature 
+        secret (bytes | PRIVATE_KEY_TYPES | str): The secret used to create the JWT signature
     """
     issuer: str
     signmethod: SignMethod

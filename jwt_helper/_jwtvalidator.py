@@ -1,10 +1,9 @@
 import jwt
 
-from dataclasses import dataclass,field
-from typing import Union
+from dataclasses import dataclass, field
 
 from ._issuer import Issuer
-from ._signmethods import SignMethod
+
 
 @dataclass
 class JWTValidator:
@@ -13,6 +12,7 @@ class JWTValidator:
     Attributes:
         issuers (dict): A dictionary storing our Trusted Issuers and their methods and secrets
     """
+
     issuers: dict[str, Issuer] = field(default_factory=dict)
 
     def check_token(self, token: str) -> bool:
