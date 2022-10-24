@@ -21,6 +21,6 @@ jobs:
           publish_branch: master
           external_repository: bad-microservices/bad-microservices.github.io
           deploy_key: ${{ secrets.GH_PAGES }}
-          publish_dir: build/html
+          publish_dir: _build/html
           destination_dir: jwt_helper
-          force_orphan: true
+          keep_files: true
