@@ -51,7 +51,7 @@ class JWTValidator:
         return True
 
     @staticmethod
-    def get_jwt_as_dict_untrusted(jwt_token:str) -> dict:
+    def get_jwt_as_dict_untrusted(jwt_token: str) -> dict:
         """Returns the content of the JWT without validating its signature.
 
         Args:
@@ -65,11 +65,11 @@ class JWTValidator:
         """
 
         return {
-            "headers":jwt.get_unverified_header(jwt_token),
-            "payload":jwt.decode(jwt_token, options={"verify_signature": False})
+            "headers": jwt.get_unverified_header(jwt_token),
+            "payload": jwt.decode(jwt_token, options={"verify_signature": False}),
         }
 
-    def get_jwt_as_dict(self,jwt_token:str) -> dict:
+    def get_jwt_as_dict(self, jwt_token: str) -> dict:
         """Gets JWT Content as dict but verifies the JWT itself
 
         Args:
@@ -85,8 +85,7 @@ class JWTValidator:
         if not self.verify_jwt(jwt_token):
             raise ValueError("JWT Invalid")
 
-        return JWTValidator.get_jwt_as_dict_untrusted(jwt_token) 
-
+        return JWTValidator.get_jwt_as_dict_untrusted(jwt_token)
 
     def remove_issuer(self, issuer: str) -> bool:
         """Remove and issuer (by name) from our dictionary of trusted issuers
