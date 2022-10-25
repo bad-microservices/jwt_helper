@@ -14,9 +14,6 @@ jwt_helper
 .. image:: https://github.com/bad-microservices/jwt_helper/actions/workflows/documentation.yaml/badge.svg
    :target: https://github.com/bad-microservices/jwt_helper/actions?query=workflow:Docs
 
-.. image:: https://github.com/bad-microservices/jwt_helper/actions/workflows/documentation.yaml/badge.svg
-   :target: https://github.com/bad-microservices/jwt_helper/actions?query=workflow:Docs
-
 .. image:: https://github.com/bad-microservices/jwt_helper/actions/workflows/pypi_upload.yaml/badge.svg
     :target: https://github.com/bad-microservices/jwt_helper/actions?query=workflow:pypi
 
