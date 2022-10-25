@@ -26,7 +26,7 @@ def get_version():
     else:
         raise RuntimeError("Unable to find version string")
 
-
+version = get_version()
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -109,7 +109,7 @@ html_theme_options = {
         {
             "media": "(prefers-color-scheme: dark)",
             "scheme": "slate",
-            "primary": "deep-orange",
+            "primary": "green",
             "accent": "lime",
             "toggle": {
                 "icon": "material/lightbulb",
@@ -118,7 +118,7 @@ html_theme_options = {
         },
     ],
     # BEGIN: version_dropdown
-    "version_dropdown": True,
+    "version_dropdown": False,
     "version_info": [
         {
             "version": "https://bad-microservices.github.io/jwt_helper",

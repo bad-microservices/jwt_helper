@@ -11,8 +11,10 @@ deps:
 	pipenv install --dev
 
 doc: deps
-	rm -fR ./build
+	rm -fR ./_build
+	cp ./CHANGELOG.rst ./doc/
 	pipenv run sphinx-build -M html doc _build
+	rm ./doc/CHANGELOG.rst
 
 package: deps
 	rm -fR dist/
