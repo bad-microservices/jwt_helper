@@ -15,7 +15,7 @@ class JWTValidator:
 
     issuers: dict[str, Issuer] = field(default_factory=dict)
 
-    def add_issuer(self,issuer:Issuer) -> bool:
+    def add_issuer(self, issuer: Issuer) -> bool:
         """Adds an issuer to the list of trusted issuers
 
         Args:
@@ -56,7 +56,7 @@ class JWTValidator:
             issuer = self.issuers[headers["iss"]]
         except KeyError:
             raise ValueError("Tokens Issuer is not Trusted")
-        
+
         # validate token
         jwt.decode(
             token,
