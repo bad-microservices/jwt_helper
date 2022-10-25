@@ -48,7 +48,7 @@ class JWTEncoder:
             "exp": valid_until.timestamp(),
         }
 
-        for key, value in headers:
+        for key, value in headers.items():
             if key not in ["iss", "iat", "nbf", "exp"]:
                 jwt_headers[key] = value
 

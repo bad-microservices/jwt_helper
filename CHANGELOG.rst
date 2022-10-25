@@ -1,6 +1,11 @@
 Changelog
 ===============
 
+0.0.7
+------
+
+* Bugfix `for key, value in headers.items():` was missing `.items()`
+
 0.0.6
 ------
 
