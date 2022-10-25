@@ -22,7 +22,7 @@ def load_key_from_disk(
     """
 
     file = Path(path)
-    key_bytes = file.read_bytes
+    key_bytes = file.read_bytes()
 
     # if no secret is specified return the bytes as is
     if secret is None:

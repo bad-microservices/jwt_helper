@@ -1,6 +1,12 @@
 Changelog
 ===============
 
+0.0.6
+------
+
+* changed `file.read_bytes` to `file.read_bytes()`
+
+
 0.0.5
 ------
 
