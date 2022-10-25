@@ -56,13 +56,13 @@ class JWTValidator:
             issuer = self.issuers[headers["iss"]]
         except KeyError:
             raise ValueError("Tokens Issuer is not Trusted")
-
+        
         # validate token
         jwt.decode(
             token,
             key=issuer.secret,
             algorithms=[method.value for method in issuer.methods],
-            options={"require": ["exp", "iss"]},
+            options={"verify_exp": True},
         )
 
         return True

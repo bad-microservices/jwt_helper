@@ -1,6 +1,11 @@
 Changelog
 ===============
 
+0.0.5
+------
+
+* `"require": ["exp","iss"]` did not work as excepted. changed it.
+
 0.0.4
 ------
 
