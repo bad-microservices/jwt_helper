@@ -1,6 +1,11 @@
 Changelog
 ===============
 
+0.0.4
+------
+
+* fixed bug in `create_jwt`... i should write some tests
+
 0.0.3
 ------
 

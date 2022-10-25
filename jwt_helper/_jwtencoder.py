@@ -17,6 +17,7 @@ class JWTEncoder:
         signmethod (SignMethod): The Algorithm used to create the JWT.
         secret (bytes | PRIVATE_KEY_TYPES | str): The secret used to create the JWT signature
     """
+
     issuer: str
     signmethod: SignMethod
     secret: Union[bytes, PRIVATE_KEY_TYPES, str]
@@ -41,16 +42,14 @@ class JWTEncoder:
         )
 
         jwt_headers = {
-            {
-                "iss": self.issuer,
-                "iat": datetime.datetime.now().timestamp(),
-                "nbf": datetime.datetime.now().timestamp(),
-                "exp": valid_until.timestamp(),
-            }
+            "iss": self.issuer,
+            "iat": datetime.datetime.now().timestamp(),
+            "nbf": datetime.datetime.now().timestamp(),
+            "exp": valid_until.timestamp(),
         }
 
-        for key,value in headers:
-            if key not in ["iss","iat","nbf","exp"]:
+        for key, value in headers:
+            if key not in ["iss", "iat", "nbf", "exp"]:
                 jwt_headers[key] = value
 
         token = jwt.encode(
