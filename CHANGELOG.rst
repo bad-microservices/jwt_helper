@@ -1,6 +1,11 @@
 Changelog
 ===============
 
+0.0.3
+------
+
+* added `add_issuer` function to JWTValidator class
+
 0.0.2
 ------
 

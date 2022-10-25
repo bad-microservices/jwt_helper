@@ -15,6 +15,23 @@ class JWTValidator:
 
     issuers: dict[str, Issuer] = field(default_factory=dict)
 
+    def add_issuer(self,issuer:Issuer) -> bool:
+        """Adds an issuer to the list of trusted issuers
+
+        Args:
+            issuer (Issuer): the issuer we want to add to our list
+
+        Returns:
+            bool: False if the issuer name is already known to us
+        """
+        try:
+            _ = self.issuers[issuer.name]
+            return False
+        except KeyError:
+            pass
+        self.issuers[issuer.name] = issuer
+        return True
+
     def verify_jwt(self, token: str) -> bool:
         """Function to check if a token is valid
 
