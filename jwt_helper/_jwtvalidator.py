@@ -1,4 +1,5 @@
 import jwt
+import datetime
 
 from dataclasses import dataclass, field
 
@@ -38,6 +39,12 @@ class JWTValidator:
         This Function checks a JWT Token for it's validity. The Tokens 'iss' Header entry gets used to determine
         the Issuer from our Issuers list.
 
+        Important:
+            Requires the following claims to exist in the JWT
+            * :code:`exp`
+            * :code:`iss`
+            * :code:`nbf`
+
         Args:
             token (str): JWT Token we want to verify
 
@@ -55,7 +62,15 @@ class JWTValidator:
         try:
             issuer = self.issuers[headers["iss"]]
         except KeyError:
-            raise ValueError("Tokens Issuer is not Trusted")
+            return False
+
+        now = datetime.datetime.now().timestamp()
+
+        if  now > headers["exp"]:
+            return False
+
+        if headers["nbf"] > now:
+            return False
 
         # validate token
         jwt.decode(
