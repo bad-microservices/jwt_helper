@@ -1,6 +1,10 @@
 Changelog
 ===============
 
+0.0.9
+------
+* Fix Deprecation Warning for :code:`PRIVATE_KEY_TYPES`
+
 0.0.8
 ------
 * verifying the token did not properly check it...

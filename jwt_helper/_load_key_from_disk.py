@@ -1,14 +1,14 @@
 from pathlib import Path
 from typing import Optional, Union
 
-from cryptography.hazmat.primitives.asymmetric.types import PRIVATE_KEY_TYPES
+from cryptography.hazmat.primitives.asymmetric.types import PrivateKeyTypes
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
 
 
 def load_key_from_disk(
     path: str, secret: Optional[bytes] = None
-) -> Union[bytes, PRIVATE_KEY_TYPES]:
+) -> Union[bytes, PrivateKeyTypes]:
     """Load Key from Disk with a given Path
 
     This Function loads the specified key from disks and returns it as Bytes or Private Key type (if there is a secret specified).
@@ -18,7 +18,7 @@ def load_key_from_disk(
         secret (str, optional): secret for the keyfile. Defaults to None.
 
     Returns:
-        Union[bytes, PRIVATE_KEY_TYPES]: the loaded key
+        Union[bytes, PrivateKeyTypes]: the loaded key
     """
 
     file = Path(path)

@@ -3,7 +3,7 @@ import datetime
 
 from dataclasses import dataclass
 from typing import Union
-from cryptography.hazmat.primitives.asymmetric.types import PRIVATE_KEY_TYPES
+from cryptography.hazmat.primitives.asymmetric.types import PrivateKeyTypes
 
 from ._signmethods import SignMethod
 
@@ -15,12 +15,12 @@ class JWTEncoder:
     Attributes:
         issuer (str): The Issuer who created the JWT.
         signmethod (SignMethod): The Algorithm used to create the JWT.
-        secret (bytes | PRIVATE_KEY_TYPES | str): The secret used to create the JWT signature
+        secret (bytes | PrivateKeyTypes | str): The secret used to create the JWT signature
     """
 
     issuer: str
     signmethod: SignMethod
-    secret: Union[bytes, PRIVATE_KEY_TYPES, str]
+    secret: Union[bytes, PrivateKeyTypes, str]
 
     def __repr__(self):
         return f"JWTEncoder(issuer={self.issuer!r}, signmethod={self.signmethod!r})"
