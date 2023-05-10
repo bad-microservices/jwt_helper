@@ -1,6 +1,11 @@
 Changelog
 ===============
 
+0.0.10
+-------
+* added :code:`not_before_grace_time` as parameter to :code:`JWTValidator.verify_jwt`
+  * Defaults to 30 seconds
+
 0.0.9
 ------
 * Fix Deprecation Warning for :code:`PRIVATE_KEY_TYPES`

@@ -1,6 +1,7 @@
 import jwt
 import datetime
 
+from typing import Optional
 from dataclasses import dataclass, field
 
 from ._issuer import Issuer
@@ -33,7 +34,7 @@ class JWTValidator:
         self.issuers[issuer.name] = issuer
         return True
 
-    def verify_jwt(self, token: str) -> bool:
+    def verify_jwt(self, token: str, not_before_grace_time: Optional[int] = 30) -> bool:
         """Function to check if a token is valid
 
         This Function checks a JWT Token for it's validity. The Tokens 'iss' Header entry gets used to determine
@@ -47,6 +48,7 @@ class JWTValidator:
 
         Args:
             token (str): JWT Token we want to verify
+            not_before_grace_time (int): Seconds tolerance to the nbf header. Defaults to 30 seconds.
 
         Raises:
             ValueError: If the Issuer is not known to us throw this
@@ -66,10 +68,10 @@ class JWTValidator:
 
         now = datetime.datetime.now().timestamp()
 
-        if  now > headers["exp"]:
+        if now > headers["exp"]:
             return False
 
-        if headers["nbf"] > now:
+        if headers["nbf"] - not_before_grace_time > now:
             return False
 
         # validate token
