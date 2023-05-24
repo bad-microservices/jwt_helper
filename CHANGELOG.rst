@@ -1,6 +1,15 @@
 Changelog
 ===============
 
+0.0.11
+-------
+* Can now load :code:`Issuer` from a dictionary via :code:`Issuer.from_dict()`
+* Can now load :code:`JWTValidator` from a dictionary via :code:`Issuer.from_dict()`
+* Added custom :code:`__repr__()` for 
+  * :code:`JWTValidator`
+  * :code:`Issuer`
+  * :code:`SignMethod`
+
 0.0.10
 -------
 * added :code:`not_before_grace_time` as parameter to :code:`JWTValidator.verify_jwt`

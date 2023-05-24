@@ -23,3 +23,6 @@ class SignMethod(Enum):
     RS256 = "RS256"
     RS384 = "RS384"
     RS512 = "RS512"
+
+    def __repr__(self):
+        return self.value

@@ -1,10 +1,10 @@
 import jwt
 import datetime
 
-from typing import Optional
+from typing import Optional, List, Dict
 from dataclasses import dataclass, field
 
-from ._issuer import Issuer
+from jwt_helper._issuer import Issuer
 
 
 @dataclass
@@ -16,6 +16,9 @@ class JWTValidator:
     """
 
     issuers: dict[str, Issuer] = field(default_factory=dict)
+
+    def __repr__(self):
+        return f"JWTValidator(Issuers[{', '.join(self.issuers)}])"
 
     def add_issuer(self, issuer: Issuer) -> bool:
         """Adds an issuer to the list of trusted issuers
@@ -102,6 +105,15 @@ class JWTValidator:
             "headers": jwt.get_unverified_header(jwt_token),
             "payload": jwt.decode(jwt_token, options={"verify_signature": False}),
         }
+
+    @staticmethod
+    def from_dict(cfg_dict: List[Dict[str, str]]):
+        jwt_validator = JWTValidator()
+
+        for issuer in cfg_dict:
+            jwt_validator.add_issuer(Issuer.from_dict(issuer))
+
+        return jwt_validator
 
     def get_jwt_as_dict(self, jwt_token: str) -> dict:
         """Gets JWT Content as dict but verifies the JWT itself

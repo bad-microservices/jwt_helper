@@ -1,7 +1,17 @@
 from dataclasses import dataclass
 from typing import Union
 
-from ._signmethods import SignMethod
+from jwt_helper._signmethods import SignMethod
+from jwt_helper._load_key_from_disk import load_key_from_disk
+
+import base64
+
+SECRET_METHODS = {
+    "plain": lambda val: val,
+    "base64plain": lambda val: base64.b64decode(val.encode("utf-8")).decode("utf8"),
+    "base64key": base64.b64decode,
+    "keyfile": load_key_from_disk,
+}
 
 
 @dataclass
@@ -18,7 +28,31 @@ class Issuer:
         methods (list[SignMethod]): The list of supported Signin Methods for the specified Issuer
 
     """
-    name:str
+
+    name: str
     secret: Union[bytes, str]
     methods: list[SignMethod]
 
+    def __repr__(self):
+        return f"Issuer(name: {self.name}, methods: {self.methods})"
+
+    @staticmethod
+    def from_dict(data: dict):
+        # translate sign methods
+        methods = []
+        for method in data["methods"]:
+            methods.append(SignMethod[method])
+        # load key the specified way
+        key_type = data["secret"]["type"]
+        secret_value = data["secret"]["value"]
+
+        if not (
+            key_type == "keyfile"
+            or key_type == "base64plain"
+            or key_type == "base64key"
+            or key_type == "plain"
+        ):
+            raise ValueError(f"keytype {key_type} not supported")
+        secret = SECRET_METHODS[key_type](secret_value)
+
+        return Issuer(data["name"], secret, methods)
