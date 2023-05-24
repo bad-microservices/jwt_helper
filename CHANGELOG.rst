@@ -4,7 +4,7 @@ Changelog
 0.0.11
 -------
 * Can now load :code:`Issuer` from a dictionary via :code:`Issuer.from_dict()`
-* Can now load :code:`JWTValidator` from a dictionary via :code:`Issuer.from_dict()`
+* Can now load :code:`JWTValidator` from a dictionary via :code:`JWTValidator.from_dict()`
 * Added custom :code:`__repr__()` for 
   * :code:`JWTValidator`
   * :code:`Issuer`
